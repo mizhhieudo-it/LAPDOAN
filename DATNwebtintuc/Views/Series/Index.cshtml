@@ -1,0 +1,91 @@
+﻿@model IEnumerable<DATNwebtintuc.Models.ModelEntity.Series>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLTE3.cshtml";
+}
+<div class="header">
+    <div>
+        <a href="/Series/Viewcreate" class="btn btn-danger btn-sm" style="color:white"><i class="fa-solid fa-pen-to-square"></i></a>
+    </div>
+    <div class="search-chia">
+        <form action="/Series/Search" method="post">
+            <div class="input-ip">
+                <input type="search" name="search" placeholder="Tìm Kiếm" />
+            </div>
+            <div class="btn-ip">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container mt-3">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tên Series</th>
+                <th>Tiêu đề bài viết</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.seriesName</td>
+                    @if (item.Post.post_title.Length > 60)
+                    {
+                        <td>@item.Post.post_title.Substring(0, 60) ...</td>
+                    }
+                    else
+                    {
+                        <td>@item.Post.post_title</td>
+                    }
+                    <td>
+                        <a href="/Series/ViewUpdate?id=@item.seriesID" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-pen-square"></i></a>
+                        <a href="/Series/Delete?id=@item.seriesID" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+
+@if (ViewBag.Messcreate == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Added sucessfully',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}
+
+@if (ViewBag.Messupdate == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Updated',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}
+
+@if (ViewBag.Messdelete == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Deleted',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}

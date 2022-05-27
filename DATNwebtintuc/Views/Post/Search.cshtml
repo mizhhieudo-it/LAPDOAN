@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DATNwebtintuc.Models.ModelEntity.Post>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_AdminLTE3.cshtml";
+
+}
+<a href="/Post/Index" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-long-arrow-left"></i></a>
+<div class="container mt-3">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tiêu đề bài đăng</th>
+                <th>Thể loại</th>
+                <th>Ngày tạo</th>
+                <th>Ngày sửa</th>
+                <th>Ảnh mô tả</th>
+
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    @if (item.post_title.Length > 60)
+                    {
+                        <td>@item.post_title.Substring(0, 60) ...</td>
+                    }
+                    else
+                    {
+                        <td>@item.post_title</td>
+                    }
+                    <td>@item.Category.namecategory</td>
+                    <td>@item.create_date</td>
+                    <td>@item.edit_date</td>
+                    <td><img src="@item.post_teaser" width="180px" height="150px" /></td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+

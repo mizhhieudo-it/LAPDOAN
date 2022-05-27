@@ -1,0 +1,113 @@
+﻿@model DATNwebtintuc.Models.ModelRequest.LoginRequest
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    var validate = ViewData["checkvalidatorlogin"] as List<FluentValidation.Results.ValidationFailure>;
+    var validate1 = ViewData["checkfailllogin"];
+
+}
+@if (validate != null)
+{
+    foreach (var item in validate)
+    {
+        <div style="position: absolute; top: 10; right: 0;">
+            <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <img src="https://img.lovepik.com/element/40120/8183.png_860.png" height="20px" width="30px" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Warning</strong>
+                    <span aria-hidden="true">&times;</span>
+
+                </div>
+                <div class="toast-body bg-light">
+                    @item.ErrorMessage
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@if (validate1 != null)
+{
+
+    {
+        <div style="position: absolute; top: 10; right: 0;">
+            <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <img src="https://img.lovepik.com/element/40120/8183.png_860.png" height="20px" width="30px" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Warning</strong>
+                    <span aria-hidden="true">&times;</span>
+
+                </div>
+                <div class="toast-body bg-light">
+                    @validate1
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div class="form">
+    <div class="chu-login">
+        <p>LOGIN HA NOI NEWS</p>
+    </div>
+    <form action="/Account/Login" method="post">
+        <div>
+            <div class="label-us">
+                <label>Username:</label>
+            </div>
+            <div class="input-us">
+                <input placeholder="Username" type="text" name="Username" />
+            </div>
+        </div>
+
+        <div>
+            <div class="label-emailpass">
+                <label>Password:</label>
+            </div>
+            <div class="input-emailpass">
+                <input placeholder="Password" type="password" name="password" />
+            </div>
+        </div>
+
+        <div class="btn-bt btnlogin">
+            <button type="submit" class="btn btn-danger">Đăng nhập</button>
+        </div>
+    </form>
+    <div class="thaotac">
+        <div class="register-login">
+            <div class="register-login-chu">
+                <a href="/Account/Register" class="chudka"><p class="chudk">Đăng Kí</p></a>
+            </div>
+            <div class="register-login-kitu">
+                <i class="fa-solid fa-registered"></i>
+            </div>
+        </div>
+        <div>
+            <div class="thaotacquenvadoi">
+                <div>
+                    <a href="/Account/Resetpass" class="chudkquenvadoia"><p class="chudkquenvadoi">Quên Mật Khẩu</p></a>
+                </div>
+                <div class="thaotacquenvadoi-kitu">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="thaotacquenvadoi">
+                <div>
+                    <a href="/Account/Changepassword" class="chudkquenvadoia"><p class="chudkquenvadoi">Đổi Mật Khẩu</p></a>
+                </div>
+                <div class="thaotacquenvadoi-kitu">
+                    <i class="fas fa-caret-square-left"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const getToast = document.getElementById("toast");
+    const Toast = new bootstrap.Toast(getToast);
+    Toast.show();
+    Toast._config.delay = 7000;
+</script>
+

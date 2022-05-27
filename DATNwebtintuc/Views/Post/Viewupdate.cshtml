@@ -1,0 +1,91 @@
+﻿@model DATNwebtintuc.Models.ModelEntity.Post
+@{
+    ViewBag.Title = "Viewupdate";
+    Layout = "~/Views/Shared/_AdminLTE3.cshtml";
+    var validate = ViewData["checkvalidatepostupdate"] as List<FluentValidation.Results.ValidationFailure>;
+}
+
+@if (validate != null)
+{
+    foreach (var item in validate)
+    {
+        <div style="position: absolute; top: 110px; right: 0;">
+            <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <img src="https://img.lovepik.com/element/40120/8183.png_860.png" height="20px" width="30px" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Warning</strong>
+                    <span aria-hidden="true">&times;</span>
+
+                </div>
+                <div class="toast-body bg-light">
+                    @item.ErrorMessage
+                </div>
+            </div>
+        </div>
+    }
+}
+<form action="/Post/Update" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="formGroupExampleInput" readonly hidden>Mã bài viết</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" name="post_id" value="@Model.post_id" readonly hidden>
+        <br />
+        <label for="formGroupExampleInput">Tiêu đề bài viết</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nhập tiêu đề bài viết" name="post_title" value="@Model.post_title">
+        <br />
+        <label for="formGroupExampleInput">Slug bài viết</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nhập slug không có dấu" name="post_slug" value="@Model.post_slug">
+        <br />
+        <label for="formGroupExampleInput">HashTag bài viết</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nhập hashtag bài viết" name="post_tag" value="@Model.post_tag">
+        <br />
+        <label for="formGroupExampleInput">Ảnh mô tả</label>
+        <input type="file" class="form-control" id="formGroupExampleInput" name="post_teaser">
+        <br />
+        <label for="formGroupExampleInput">Review bài viết</label>
+        <textarea name="post_review">
+            @Model.post_review
+        </textarea>
+        <br />
+        <label for="formGroupExampleInput">Nội dung bài viết</label>
+        <textarea name="post_content">
+            @Model.post_content
+        </textarea>
+        <br />
+        <label>Thể loại</label>
+        <br />
+        <select name="IDcategory" class="form-control">
+            @foreach (var item in @ViewData["selectcategory"] as List<DATNwebtintuc.Models.ModelEntity.Category>)
+            {
+                <option @(item.IDcategory == Model.IDcategory ? "selected" : "") value="@item.IDcategory">@item.namecategory</option>
+                @*<option value="@item.IDcategory">@item.namecategory</option>*@
+            }
+        </select>
+        <br />
+        <label for="formGroupExampleInput">Ngày tạo</label>
+        <input type="datetime" class="form-control" id="formGroupExampleInput" name="create_date" readonly value="@Model.create_date">
+        <br />
+        <label for="formGroupExampleInput">Ngày sửa</label>
+        <input type="date" class="form-control" id="formGroupExampleInput" name="edit_date">
+        <button type="submit" class="btn-danger" onclick="clickk()" style="margin-left:50%;margin-top:10px">Tạo</button>
+    </div>
+</form>
+<script src="~/Content/Ckeditor/ckeditor/ckeditor.js">
+
+</script>
+<script>
+    CKEDITOR.replace('post_review')
+</script>
+
+<script src="~/Content/Ckeditor/ckeditor/ckeditor.js">
+
+</script>
+<script>
+    CKEDITOR.replace('post_content')
+</script>
+<script>
+    const getToast = document.getElementById("toast");
+    const Toast = new bootstrap.Toast(getToast);
+    Toast.show();
+    Toast._config.delay = 7000;
+</script>
+

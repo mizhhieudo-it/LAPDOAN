@@ -1,0 +1,96 @@
+﻿@model IEnumerable<DATNwebtintuc.Models.ModelEntity.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLTE3.cshtml";
+    var validate = ViewData["checkdelte"];
+}
+@if (validate != null)
+{
+    {
+        <div style="position: absolute; top: 110px; right: 0;">
+            <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <img src="https://img.lovepik.com/element/40120/8183.png_860.png" height="20px" width="30px" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Warning</strong>
+                    <span aria-hidden="true">&times;</span>
+
+                </div>
+                <div class="toast-body bg-light">
+                    @validate
+                </div>
+            </div>
+        </div>
+    }
+}
+<div class="header">
+    <div>
+        <a href="/Category/Viewcreate" class="btn btn-danger btn-sm" style="color:white"><i class="fa-solid fa-pen-to-square"></i></a>
+    </div>
+    <div class="search-chia">
+        <form action="/Category/Search" method="post">
+            <div class="input-ip">
+                <input type="search" name="search" placeholder="Tìm Kiếm" />
+            </div>
+            <div class="btn-ip">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-3">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tên Thể Loại</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.namecategory</td>
+
+                    <td>
+                        <a href="/Category/ViewUpdate?id=@item.IDcategory" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-pen-square"></i></a>
+                        <a href="/Category/Delete?id=@item.IDcategory" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+
+@if (ViewBag.Messcreate == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Added sucessfully',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}
+
+@if (ViewBag.Messupdate == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Updated',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}
+<script>
+    const getToast = document.getElementById("toast");
+    const Toast = new bootstrap.Toast(getToast);
+    Toast.show();
+    Toast._config.delay = 7000;
+</script>

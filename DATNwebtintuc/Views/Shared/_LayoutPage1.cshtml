@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+     .img-trai>img
+     {
+         width:850px;
+         height:812px;
+     }
+     .bao
+     {
+         display:flex;
+     }
+     .bg-phai 
+      {
+         background-color: #6075a0;
+         width: 940px;
+         height: 812px;
+      }
+      .img-phai
+        {
+            
+            width: 852px;
+            height: 812px;
+            position:relative;
+            background-color:azure
+
+        }
+      .chu-algo
+      {
+          position:absolute;
+          top:10px;
+          left:1160px;
+          font-size:35px
+      }
+        .form {
+            background-color: Silver;
+            width: 545px;
+            height: 535px;
+            position: absolute;
+            top: 120px;
+            right: 90px
+        }
+      .chu-register
+      {
+          margin-left:110px
+      }
+      .chu-register>p
+      {
+          font-size:28px;
+          margin-top:15px;
+          color:darkred;
+      }
+      .chu-change 
+       {
+          margin-left: 140px
+       }
+      .chu-change > p 
+       {
+          font-size: 28px;
+          margin-top: 15px;
+          color: darkred;
+        }
+      .chu-login 
+       {
+         margin-left: 136px
+       }
+      .chu-login > p 
+      {
+          font-size: 28px;
+          margin-top: 15px;
+          color: darkred;
+      }
+      .label-us 
+       {
+            margin-left: 20px
+       }
+      .label-emailpass 
+      {
+          margin-left: 20px;
+          margin-top:10px;
+      }
+      .label-us>label 
+      {
+          color: darkred;
+          font-size:20px
+      }
+      .label-emailpass>label 
+        {
+           color: darkred;
+           font-size: 20px
+        }
+      .input-us 
+       {
+          margin-left: 20px;
+          margin-top:10px;
+       }
+      .input-emailpass
+       {
+          margin-left: 20px;
+          margin-top: 10px;
+        }
+      .input-us>input
+       {
+          width:500px;
+          height:40px;
+          border:1px solid darkred;
+          outline:none;
+       }
+        .input-emailpass>input 
+       {
+          width: 500px;
+          height: 40px;
+          border: 1px solid darkred;
+          outline: none;
+       }
+       .btn-bt
+       {
+           margin-top:15px;
+           
+       }
+        .btchange
+        {
+            margin-left:245px;
+        }
+        .btnlogin 
+        {
+            margin-left: 215px;
+        }
+        .btnregis 
+        {
+            margin-left: 245px;
+        }
+        .btnreset {
+            margin-left: 235px;
+        }
+        .register-login {
+            display: flex;
+        }
+        .chudk
+        {
+            font-size:17px;
+            color:darkred;
+        }
+        .chudkquenvadoi 
+        {
+            font-size: 17px;
+            color: darkred;
+            margin-left:20px
+        }
+        .chudka 
+        {
+            text-decoration: none;
+        }
+        .chudkquenvadoia 
+        {
+            text-decoration: none;
+        }
+        .register-login-chu 
+        {
+            margin-left: 92px;
+        }
+        .register-login-kitu > i 
+        {
+            margin-left: 5px;
+            color: darkred;
+            font-size:19px;
+            margin-top:5px
+        }
+        .thaotac
+        {
+            display:flex;
+            margin-top:20px
+        }
+        .thaotacquenvadoi
+        {
+            display:flex;
+        }
+        .thaotacquenvadoi-kitu>p
+        {
+            margin-left: 20px;
+        }
+        .thaotacquenvadoi-kitu > i 
+         {
+            margin-left: 5px;
+            color: darkred;
+            font-size: 19px;
+            margin-top: 5px
+         }
+    </style>
+</head>
+<body>
+   <div class="bao">
+  <div class="img-trai">
+      <img src="https://cdn.dribbble.com/users/985415/screenshots/4808053/flag_tower.gif" />
+  </div>
+   
+   <div>
+       @RenderBody()
+   </div>
+   
+   </div>
+</body>
+</html>

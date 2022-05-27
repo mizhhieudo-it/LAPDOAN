@@ -1,0 +1,108 @@
+﻿@model IEnumerable<DATNwebtintuc.Models.ModelEntity.Post>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLTE3.cshtml";
+    var totallpagesize = int.Parse(ViewData["totallpage"].ToString());
+}
+
+<div class="header">
+    <div>
+        <a href="/Post/Viewcreate" class="btn btn-danger btn-sm" style="color:white"><i class="fa-solid fa-pen-to-square"></i></a>
+    </div>
+    <div class="search-chia">
+        <form action="/Post/Search" method="post">
+            <div class="input-ip">
+                <input type="search" name="search" placeholder="Tìm Kiếm" />
+            </div>
+            <div class="btn-ip">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-3">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tiêu đề bài đăng</th>
+                <th>Thể loại</th>
+                <th>Ngày tạo</th>
+                <th>Ảnh mô tả</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    @if (item.post_title.Length > 60)
+                    {
+                        <td>@item.post_title.Substring(0, 60) ...</td>
+                    }
+                    else
+                    {
+                        <td>@item.post_title</td>
+                    }
+                    <td>@item.Category.namecategory</td>
+                    <td>@item.create_date</td>
+                    <td><img src="@item.post_teaser" width="210px" height="200px" /></td>
+                    <td>
+                        <a href="/Post/Viewupdate?id=@item.post_id" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-pen-square"></i></a>
+                        <a href="/Post/Detail?id=@item.post_id" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-info-circle"></i></a>
+                        <a href="/Post/Delete?id=@item.post_id" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-trash-alt"></i></a>
+
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+
+@if (ViewBag.Messcreate == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Added sucessfully',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}
+
+@if (ViewBag.Messupdate == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Updated',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}
+
+@if (ViewBag.Messdelete == true)
+{
+    <script>
+        window.addEventListener('load', (event) => {
+            Swal.fire(
+                'Deleted',
+                'Please click here',
+                'success'
+            )
+        })
+    </script>
+}
+<ul class="pagination" style="margin-left:45%;margin-top:20px">
+  
+    @for (var i = 1; i <= totallpagesize; i++)
+    {
+        <li class="page-item"><a class="page-link" href="/Post/Index?page=@i">@i</a></li>
+    }
+
+</ul>

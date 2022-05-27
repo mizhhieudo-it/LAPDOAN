@@ -1,0 +1,105 @@
+﻿@model DATNwebtintuc.Models.ModelRequest.ResetPasswordRequest
+@{
+    ViewBag.Title = "Resetpass";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    var validate = ViewData["checkvalidatorreset"] as List<FluentValidation.Results.ValidationFailure>;
+    var validate1 = ViewData["checkmail"];
+}
+
+@if (validate != null)
+{
+    foreach (var item in validate)
+    {
+        <div style="position: absolute; top: 10; right: 0;">
+            <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <img src="https://img.lovepik.com/element/40120/8183.png_860.png" height="20px" width="30px" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Warning</strong>
+                    <span aria-hidden="true">&times;</span>
+
+                </div>
+                <div class="toast-body bg-light">
+                    @item.ErrorMessage 
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@if (validate1 != null)
+{
+
+    <div style="position: absolute; top: 10; right: 0;">
+        <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-warning">
+                <img src="https://img.lovepik.com/element/40120/8183.png_860.png" height="20px" width="30px" class="rounded mr-2" alt="...">
+                <strong class="mr-auto">Warning</strong>
+                <span aria-hidden="true">&times;</span>
+
+            </div>
+            <div class="toast-body bg-light">
+                @validate1
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<div class="form">
+    <div class="chu-change">
+        <p>RESETPASSWORD</p>
+    </div>
+    <form action="/Account/Resetpass" method="post">
+
+        <div>
+            <div class="label-emailpass">
+                <label>Email:</label>
+            </div>
+            <div class="input-emailpass">
+                <input placeholder="Email" type="email" name="Email" />
+            </div>
+        </div>
+
+        <div class="btn-bt btnreset">
+            <button type="submit" class="btn btn-danger">Gửi</button>
+        </div>
+    </form>
+    <div class="thaotac">
+        <div class="register-login">
+            <div class="register-login-chu">
+                <a href="/Account/Register" class="chudka"><p class="chudk">Đăng Kí</p></a>
+            </div>
+            <div class="register-login-kitu">
+                <i class="fa-solid fa-registered"></i>
+            </div>
+        </div>
+        <div>
+            <div class="thaotacquenvadoi">
+                <div>
+                    <a href="/Account/Login" class="chudkquenvadoia"><p class="chudkquenvadoi">Đăng Nhập</p></a>
+                </div>
+                <div class="thaotacquenvadoi-kitu">
+                    <i class="fas fa-sign-in"></i>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="thaotacquenvadoi">
+                <div>
+                    <a href="/Account/Changepassword" class="chudkquenvadoia"><p class="chudkquenvadoi">Đổi Mật Khẩu</p></a>
+                </div>
+                <div class="thaotacquenvadoi-kitu">
+                    <i class="fas fa-caret-square-left"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const getToast = document.getElementById("toast");
+    const Toast = new bootstrap.Toast(getToast);
+    Toast.show();
+    Toast._config.delay = 7000;
+</script>
+

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DATNwebtintuc.Models.ModelEntity.Tags>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_AdminLTE3.cshtml";
+}
+<a href="/Tags/Index" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-long-arrow-left"></i></a>
+
+<div class="container mt-3">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tên Tags</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.TagName</td>
+
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+

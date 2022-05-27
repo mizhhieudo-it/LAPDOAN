@@ -1,0 +1,42 @@
+﻿@model DATNwebtintuc.Models.ModelEntity.Tags
+@{
+    ViewBag.Title = "Viewupdate";
+    Layout = "~/Views/Shared/_AdminLTE3.cshtml";
+    var validate = ViewData["checkvalidatetag"] as List<FluentValidation.Results.ValidationFailure>;
+}
+@if (validate != null)
+{
+    foreach (var item in validate)
+    {
+        <div style="position: absolute; top: 110px; right: 0;">
+            <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <img src="https://img.lovepik.com/element/40120/8183.png_860.png" height="20px" width="30px" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Warning</strong>
+                    <span aria-hidden="true">&times;</span>
+
+                </div>
+                <div class="toast-body bg-light">
+                    @item.ErrorMessage
+                </div>
+            </div>
+        </div>
+    }
+}
+<form action="/Tags/Update" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="formGroupExampleInput" readonly hidden>Mã Tags</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nhập tag" name="TagID" value="@Model.TagID" readonly hidden>
+        <label for="formGroupExampleInput">Tên Tags</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nhập tag" name="TagName" value="@Model.TagName">
+        <button type="submit" class="btn-danger" onclick="clickk()" style="margin-left:50%;margin-top:10px">Sửa</button>
+    </div>
+</form>
+<script>
+    const getToast = document.getElementById("toast");
+    const Toast = new bootstrap.Toast(getToast);
+    Toast.show();
+    Toast._config.delay = 7000;
+</script>
+
+
